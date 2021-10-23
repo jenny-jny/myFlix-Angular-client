@@ -26,13 +26,15 @@ export class UserRegistrationService {
 
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
-    console.error('Some error occurred:', error.error.message);
+      console.error('Some error occurred:', error.error.message);
     } else {
-    console.error(
+      console.error(
         `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
+        `Error body is: ${error.error}`
+      );
     }
     return throwError(
-    'Something bad happened; please try again later.');
+      'Something bad happened; please try again later.'
+    );
   }
 }
