@@ -44,8 +44,7 @@ export class FetchAPIDataService {
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     // /users/:Username
-    // post method
-    return this.http.get(apiUrl + '/login', userDetails).pipe(
+    return this.http.post(apiUrl + '/login', userDetails).pipe(
       catchError(this.handleError)
     );
   }
