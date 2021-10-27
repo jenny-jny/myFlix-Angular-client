@@ -50,7 +50,7 @@ export class FetchAPIDataService {
   }
 
   public getAllMovies(): Observable<any> {
-    return this.http.get(apiUrl + '/', {headers: new HttpHeaders({Authorization: 'Bearer ' + token})}).pipe(
+    return this.http.get(apiUrl + '/movies', {headers: new HttpHeaders({Authorization: 'Bearer ' + token})}).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
     );
