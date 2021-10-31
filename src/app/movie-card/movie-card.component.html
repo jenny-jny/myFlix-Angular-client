@@ -6,8 +6,9 @@
   </mat-dialog-content>
 </mat-card> -->
 
-<div style="display: flex;">
-  <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto">
+<app-nav-bar></app-nav-bar>
+<div style="display: flex; overflow-x:scroll;">
+  <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto;">
     <mat-card-header>
       <mat-card-title>{{movie.Title}}</mat-card-title>
       <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
