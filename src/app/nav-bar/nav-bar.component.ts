@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
+import { FavoriteMoviesComponent } from '../favorite-movies/favorite-movies.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 @Component({
@@ -21,6 +22,10 @@ export class NavBarComponent implements OnInit {
   //   // Assigning the dialog a width
   //   this.dialog.open(MovieCardComponent, {width: '280px'});
   // }
+
+  openUserFavoriteMoviesDialog(): void {
+    this.dialog.open(FavoriteMoviesComponent, {width: '280px'});
+  }
 
   // This is the function that will open the dialog when the profile button is clicked  
   openUserProfileDialog(): void {
