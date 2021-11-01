@@ -1,0 +1,17 @@
+<!-- <mat-card>
+  <mat-card-header>
+    <mat-card-title>Favorite Movies</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+  </mat-card-content>
+</mat-card> -->
+
+<h1>My Favorite Movies</h1>
+<div style="display: flex; overflow-x:scroll;">
+  <mat-card *ngFor="let favoriteMovieData of favoriteMoviesData;" style="flex: 1 1 auto;">
+    <mat-card-header>
+      <mat-card-title>{{favoriteMovieData.Title}}</mat-card-title>
+    </mat-card-header>
+    <img src={{favoriteMovieData.ImagePath}} style="width: 175px; height: 250px" alt= {{favoriteMovieData.Title}}/>
+  </mat-card>
+</div>
