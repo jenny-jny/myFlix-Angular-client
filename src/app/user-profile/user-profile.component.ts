@@ -29,6 +29,9 @@ export class UserProfileComponent implements OnInit {
       this.userData = response;
       console.log(this.userData);
       return this.userData;
+    }, (response) => {
+      console.log(response);
+      this.snackBar.open(response, 'OK', {duration: 2000});
     });
   }
 
@@ -36,23 +39,23 @@ export class UserProfileComponent implements OnInit {
     this.fetchAPIData.updateUser(this.userData).subscribe((response) => {
       console.log(response);
       this.snackBar.open('User information update successful.', 'OK', {duration: 2000});
-    }, (response => {
+    }, (response) => {
       console.log(response);
       this.snackBar.open(response, 'OK', {duration: 2000});
-    }))
+    });
   }
 
   deleteUser(): void {
     this.fetchAPIData.deleteUser().subscribe((response) => {
-      // localStorage.clear();
-      // this.dialogRef.close();
+      this.dialogRef.close();
+      localStorage.clear();
       console.log(response);
       this.snackBar.open('Profile deletion successful.', 'OK', {duration: 2000});
       this.router.navigate(['welcome']);
-    }, (response => {
+    }, (response) => {
       console.log(response);
       this.snackBar.open(response, 'OK', {duration: 2000});
-    }))
+    });
   }
 
   loginUser(): void {
