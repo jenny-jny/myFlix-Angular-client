@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-// import { MovieCardComponent } from '../movie-card/movie-card.component';
-import { UserProfileComponent } from '../user-profile/user-profile.component';
 
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 @Component({
   selector: 'app-nav-bar',
