@@ -15,7 +15,7 @@ import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.compone
 
 export class MovieCardComponent implements OnInit {
   movies: any [] = [];
-  addToFavorite: boolean = true;
+  favoriteMoviesID: any [] = [];
 
   constructor(public fetchAPIData: FetchAPIDataService, public dialog: MatDialog, public snackBar: MatSnackBar) { }
 
@@ -27,6 +27,7 @@ export class MovieCardComponent implements OnInit {
     this.fetchAPIData.getAllMovies().subscribe((response: any) => {
       this.movies = response;
       console.log(this.movies);
+      this.getFavoriteMovies();
       return this.movies;
     });
   }
@@ -52,29 +53,45 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  addFavorite(_id: string): void {
-    this.addToFavorite = false;
-    this.fetchAPIData.addFavoriteMovie(_id).subscribe((response: any) => {
-      let favoriteMovies = response.FavoriteMovies;
-      console.log(favoriteMovies);
-      this.snackBar.open('Added to favorite movies.', 'OK', {duration: 2000});
-      return favoriteMovies;
-    }, (response) => {
-      console.log(response);
-      this.snackBar.open(response, 'OK', {duration: 2000});
+  getFavoriteMovies(): void {
+    this.fetchAPIData.getUser().subscribe((response: any) => {
+      this.favoriteMoviesID = response.FavoriteMovies;
+      console.log(this.favoriteMoviesID);
+      return this.favoriteMoviesID;
     });
   }
 
+  checkNotInFavorite(_id: string): any {
+    return !this.favoriteMoviesID.includes(_id);
+  }
+
+  addFavorite(_id: string): void {
+    if(!this.favoriteMoviesID.includes(_id)){
+      this.fetchAPIData.addFavoriteMovie(_id).subscribe((response: any) => {
+        let favoriteMovies = response.FavoriteMovies;
+        console.log(favoriteMovies);
+        this.snackBar.open('Added to favorite movies.', 'OK', {duration: 2000});
+        window.location.reload();
+        return favoriteMovies;
+      }, (response) => {
+        console.log(response);
+        this.snackBar.open(response, 'OK', {duration: 2000});
+      });
+    }
+  }
+
   removeFavorite(_id: string): void {
-    this.addToFavorite = true;
-    this.fetchAPIData.deleteFavoriteMovie(_id).subscribe((response: any) => {
-      let favoriteMovies = response.FavoriteMovies;
-      console.log(favoriteMovies);
-      this.snackBar.open('Removed from favorite movies.', 'OK', {duration: 2000});
-      return favoriteMovies;
-    }, (response) => {
-      console.log(response);
-      this.snackBar.open(response, 'OK', {duration: 2000});
-    });
+    if(this.favoriteMoviesID.includes(_id)){
+      this.fetchAPIData.deleteFavoriteMovie(_id).subscribe((response: any) => {
+        let favoriteMovies = response.FavoriteMovies;
+        console.log(favoriteMovies);
+        this.snackBar.open('Removed from favorite movies.', 'OK', {duration: 2000});
+        window.location.reload();
+        return favoriteMovies;
+      }, (response) => {
+        console.log(response);
+        this.snackBar.open(response, 'OK', {duration: 2000});
+      });
+    }
   }
 }
