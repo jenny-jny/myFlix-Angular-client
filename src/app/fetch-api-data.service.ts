@@ -85,6 +85,7 @@ export class FetchAPIDataService {
   // }
 
   public getUser(): Observable<any> {
+    let token = localStorage.getItem('token');
     return this.http.get(apiUrl + `/users/${username}`, {headers: new HttpHeaders({Authorization: 'Bearer ' + token})}).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
