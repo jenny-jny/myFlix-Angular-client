@@ -15,7 +15,6 @@ import { FetchAPIDataService } from '../fetch-api-data.service';
 })
 
 export class UserProfileComponent implements OnInit {
-  // userData: any [] = [];
   userData = {Username: '', Password: '', Email: '', Birthday: ''}
 
   constructor(public fetchAPIData: FetchAPIDataService, public snackBar: MatSnackBar, public dialogRef: MatDialogRef<UserProfileComponent>, public router: Router) { }

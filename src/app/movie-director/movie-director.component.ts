@@ -8,7 +8,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 
 export class MovieDirectorComponent implements OnInit {
-
   constructor(
     @Inject(MAT_DIALOG_DATA)
       public data: {
@@ -21,5 +20,4 @@ export class MovieDirectorComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

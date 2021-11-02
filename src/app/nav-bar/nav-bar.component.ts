@@ -17,12 +17,6 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // // This is the function that will open the movie card component when the movies button is clicked  
-  // openMovies(): void {
-  //   // Assigning the dialog a width
-  //   this.dialog.open(MovieCardComponent, {width: '280px'});
-  // }
-
   openUserFavoriteMoviesDialog(): void {
     this.dialog.open(FavoriteMoviesComponent, {width: '280px'});
   }
