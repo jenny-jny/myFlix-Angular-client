@@ -16,14 +16,14 @@ export class FavoriteMoviesComponent implements OnInit {
   constructor(public fetchAPIData: FetchAPIDataService) { }
 
   ngOnInit(): void {
-    this.getMovies(),
-    this.getFavoriteMovies()
+    this.getMovies()
   }
 
   getMovies(): void {
     this.fetchAPIData.getAllMovies().subscribe((response: any) => {
       this.movies = response;
       console.log(this.movies);
+      this.getFavoriteMovies()
       return this.movies;
     });
   }
@@ -40,5 +40,4 @@ export class FavoriteMoviesComponent implements OnInit {
       return this.favoriteMoviesData;
     });
   }
-
 }
