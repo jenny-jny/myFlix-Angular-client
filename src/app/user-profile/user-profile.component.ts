@@ -17,6 +17,12 @@ import { FetchAPIDataService } from '../fetch-api-data.service';
 export class UserProfileComponent implements OnInit {
   userData = {Username: '', Password: '', Email: '', Birthday: ''}
 
+  /**
+   * @param fetchAPIData 
+   * @param snackBar 
+   * @param dialogRef 
+   * @param router 
+   */
   constructor(public fetchAPIData: FetchAPIDataService, public snackBar: MatSnackBar, public dialogRef: MatDialogRef<UserProfileComponent>, public router: Router) { }
 
   ngOnInit(): void {
@@ -59,7 +65,7 @@ export class UserProfileComponent implements OnInit {
 
   loginUser(): void {
     this.fetchAPIData.userLogin(this.userData).subscribe((response) => {
-    // Logic for a successful user login goes here! (To be implemented)
+      // Logic for a successful user login goes here! (To be implemented)
       localStorage.setItem('token', response.token);
       localStorage.setItem('username', response.user.Username);
       this.dialogRef.close(); // This will close the modal on success!

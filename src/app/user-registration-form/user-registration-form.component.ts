@@ -17,6 +17,11 @@ import { FetchAPIDataService } from '../fetch-api-data.service';
 export class UserRegistrationFormComponent implements OnInit {
   @Input() userData = {Username: '', Password: '', Email: '', Birthday: ''}
 
+  /**
+   * @param fetchAPIData 
+   * @param dialogRef 
+   * @param snackBar 
+   */
   constructor(public fetchAPIData: FetchAPIDataService, public dialogRef: MatDialogRef<UserRegistrationFormComponent>, public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {

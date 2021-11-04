@@ -11,7 +11,9 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 })
 
 export class NavBarComponent implements OnInit {
-
+  /**
+   * @param dialog 
+   */
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {

@@ -10,7 +10,9 @@ import { UserLoginFormComponent } from '../user-login-form/user-login-form.compo
 })
 
 export class WelcomePageComponent implements OnInit {
-
+  /**
+   * @param dialog 
+   */
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {

@@ -18,6 +18,12 @@ import { FetchAPIDataService } from '../fetch-api-data.service';
 export class UserLoginFormComponent implements OnInit {
   @Input() userData = { Username: '', Password: '' };
 
+  /**
+   * @param fetchAPIData 
+   * @param dialogRef 
+   * @param snackBar 
+   * @param router 
+   */
   constructor(public fetchAPIData: FetchAPIDataService, public dialogRef: MatDialogRef<UserLoginFormComponent>, public snackBar: MatSnackBar, public router: Router) { }
 
   ngOnInit(): void {

@@ -13,12 +13,18 @@ export class FavoriteMoviesComponent implements OnInit {
   favoriteMoviesID: any [] = [];
   favoriteMoviesData: any [] = [];
 
+  /**
+   * @param fetchAPIData 
+   */
   constructor(public fetchAPIData: FetchAPIDataService) { }
 
   ngOnInit(): void {
     this.getMovies()
   }
 
+  /**
+   * @returns All movies in a variable named movies that is an any type array
+   */
   getMovies(): void {
     this.fetchAPIData.getAllMovies().subscribe((response: any) => {
       this.movies = response;
@@ -28,6 +34,9 @@ export class FavoriteMoviesComponent implements OnInit {
     });
   }
 
+  /**
+   * @returns User's favorite movies in a variable named favoriteMoviesData that is an any type array
+   */
   getFavoriteMovies(): void {
     this.fetchAPIData.getUser().subscribe((response: any) => {
       this.favoriteMoviesID = response.FavoriteMovies;

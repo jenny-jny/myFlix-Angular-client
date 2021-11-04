@@ -17,12 +17,20 @@ export class MovieCardComponent implements OnInit {
   movies: any [] = [];
   favoriteMoviesID: any [] = [];
 
+  /**
+   * @param fetchAPIData 
+   * @param dialog 
+   * @param snackBar 
+   */
   constructor(public fetchAPIData: FetchAPIDataService, public dialog: MatDialog, public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getMovies();
   }
 
+  /**
+   * @returns All movies in a variable named movies that is an any type array
+   */
   getMovies(): void {
     this.fetchAPIData.getAllMovies().subscribe((response: any) => {
       this.movies = response;
@@ -32,6 +40,10 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * @param name 
+   * @param description 
+   */
   openMovieGenreDialog(name: string, description: string): void {
     this.dialog.open(MovieGenreComponent, {
       data: {name, description}, 
@@ -39,6 +51,12 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * @param name 
+   * @param birth 
+   * @param death 
+   * @param bio 
+   */
   openMovieDirectorDialog(name: string, birth: string, death: string, bio: string): void {
     this.dialog.open(MovieDirectorComponent, {
       data: {name, birth, death, bio}, 
@@ -46,6 +64,9 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * @param description 
+   */
   openMovieSynopsisDialog(description: string): void {
     this.dialog.open(MovieSynopsisComponent, {
       data: {description}, 
@@ -53,6 +74,9 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * @returns User's favorite movies in a variable named favoriteMoviesID that is an any type array
+   */
   getFavoriteMovies(): void {
     this.fetchAPIData.getUser().subscribe((response: any) => {
       this.favoriteMoviesID = response.FavoriteMovies;
@@ -61,10 +85,17 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * @param _id 
+   * @returns boolean indicating whether the selected movie id is in the array of favoriteMoviesID
+   */
   checkNotInFavorite(_id: string): any {
     return !this.favoriteMoviesID.includes(_id);
   }
 
+  /**
+   * @param _id 
+   */
   addFavorite(_id: string): void {
     if(!this.favoriteMoviesID.includes(_id)){
       this.fetchAPIData.addFavoriteMovie(_id).subscribe((response: any) => {
@@ -80,6 +111,9 @@ export class MovieCardComponent implements OnInit {
     }
   }
 
+  /**
+   * @param _id
+   */
   removeFavorite(_id: string): void {
     if(this.favoriteMoviesID.includes(_id)){
       this.fetchAPIData.deleteFavoriteMovie(_id).subscribe((response: any) => {
